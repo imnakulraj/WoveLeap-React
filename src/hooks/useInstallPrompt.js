@@ -18,6 +18,68 @@ export function isStandalone() {
     window.navigator.standalone === true
 }
 
+function getInstallContext(canInstall, installed) {
+  if (typeof window === 'undefined' || typeof navigator === 'undefined') {
+    return {
+      label: 'Install App',
+      sublabel: 'Add WoveLeap to your device',
+      badge: null,
+      title: 'Install WoveLeap on your device',
+    }
+  }
+
+  if (installed) {
+    return {
+      label: 'App Installed',
+      sublabel: 'Find WoveLeap on your desktop or home screen',
+      badge: null,
+      title: 'WoveLeap is already installed',
+    }
+  }
+
+  const ua = navigator.userAgent
+  const isIOS = /iPhone|iPad|iPod/i.test(ua)
+  const isAndroid = /Android/i.test(ua)
+  const isSafari = /Safari/i.test(ua) && !/Chrome|CriOS|Edg/i.test(ua)
+  const isSupportedDesktop = /Chrome|Edg/i.test(ua)
+
+  if (canInstall) {
+    return {
+      label: 'Install WoveLeap',
+      sublabel: isAndroid
+        ? 'Add it to your phone for faster access'
+        : 'Works offline and launches like an app',
+      badge: 'Free',
+      title: 'Install WoveLeap on your device',
+    }
+  }
+
+  if (isIOS && isSafari) {
+    return {
+      label: 'Add to Home Screen',
+      sublabel: 'Use Safari Share menu to install WoveLeap',
+      badge: null,
+      title: 'Install from Safari using Add to Home Screen',
+    }
+  }
+
+  if (isSupportedDesktop) {
+    return {
+      label: 'Install Available',
+      sublabel: 'Refresh once install prompt is ready',
+      badge: null,
+      title: 'Install becomes available when the browser exposes the prompt',
+    }
+  }
+
+  return {
+    label: 'Open in Chrome or Edge',
+    sublabel: 'Install support depends on your browser',
+    badge: null,
+    title: 'Use Chrome, Edge, or Safari on iPhone to install WoveLeap',
+  }
+}
+
 export default function useInstallPrompt() {
   const [prompt, setPrompt] = useState(() => window.__pwaInstallPrompt || null)
   const [installed, setInstalled] = useState(() => isStandalone())
@@ -60,11 +122,15 @@ export default function useInstallPrompt() {
     return outcome === 'accepted'
   }
 
+  const canInstall = !!prompt && !installed
+  const installContext = getInstallContext(canInstall, installed)
+
   return {
-    canInstall: !!prompt && !installed,   // native prompt available
+    canInstall,
     install,
     installed,
     browser: detectBrowser(),
     isIOS: isIOS(),
+    installContext,
   }
 }

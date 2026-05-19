@@ -8,7 +8,7 @@ const APP_URL = 'https://app.woveleap.com/'
 
 export default function Hero() {
   const contentRef = useRef(null)
-  const { canInstall, install, installed, browser, isIOS } = useInstallPrompt()
+  const { canInstall, install, installed, browser, isIOS, installContext } = useInstallPrompt()
   const [showModal, setShowModal] = useState(false)
 
   useEffect(() => {
@@ -65,8 +65,9 @@ export default function Hero() {
                 </div>
               ) : (
                 <button
-                  className="btn-download-app ready"
+                  className={`btn-download-app ${canInstall ? 'ready' : 'unavailable'}`}
                   onClick={() => canInstall ? install() : setShowModal(true)}
+                  title={installContext.title}
                 >
                   <span className="download-icon">
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -75,10 +76,12 @@ export default function Hero() {
                     </svg>
                   </span>
                   <div className="download-text">
-                    <span className="download-label">Install App</span>
-                    <span className="download-sub">Works offline · No app store needed</span>
+                    <span className="download-label">{installContext.label}</span>
+                    <span className="download-sub">{installContext.sublabel}</span>
                   </div>
-                  <span className="download-badge">Free</span>
+                  {installContext.badge && (
+                    <span className="download-badge">{installContext.badge}</span>
+                  )}
                 </button>
               )}
             </div>
