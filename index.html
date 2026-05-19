@@ -18,6 +18,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- Capture install prompt BEFORE React mounts to avoid race condition -->
+    <script>
+      window.__pwaInstallPrompt = null;
+      window.addEventListener('beforeinstallprompt', function(e) {
+        e.preventDefault();
+        window.__pwaInstallPrompt = e;
+        // Notify React if it's already mounted
+        window.dispatchEvent(new Event('pwa-prompt-ready'));
+      });
+    </script>
   </head>
   <body>
     <div id="root"></div>
@@ -26,6 +37,8 @@
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
           navigator.serviceWorker.register('/sw.js')
+            .then(r => console.log('[SW] Registered:', r.scope))
+            .catch(e => console.log('[SW] Error:', e))
         })
       }
     </script>
