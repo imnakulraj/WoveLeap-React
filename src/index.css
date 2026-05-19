@@ -574,6 +574,73 @@ footer {
   .footer-grid { grid-template-columns: 1fr; }
 }
 
+/* ─── Hero Install Button ────────────────────────────────────── */
+.hero-install { margin-bottom: 28px; }
+
+.btn-download-app {
+  display: inline-flex; align-items: center; gap: 14px;
+  padding: 13px 20px; border-radius: var(--radius-lg);
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.1);
+  cursor: pointer; transition: var(--transition);
+  text-align: left; color: var(--white);
+  backdrop-filter: blur(8px);
+  position: relative; overflow: hidden;
+}
+.btn-download-app::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(99,102,241,.08), rgba(6,182,212,.05));
+  opacity: 0; transition: var(--transition);
+}
+.btn-download-app.ready {
+  border-color: rgba(99,102,241,.3);
+  background: rgba(99,102,241,.08);
+}
+.btn-download-app.ready:hover {
+  border-color: rgba(99,102,241,.5);
+  background: rgba(99,102,241,.14);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(79,70,229,.2);
+}
+.btn-download-app.ready:hover::before { opacity: 1; }
+
+.btn-download-app.unavailable {
+  opacity: .55; cursor: default;
+}
+
+.download-icon {
+  width: 42px; height: 42px; border-radius: 10px; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--brand-600), var(--accent));
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 12px rgba(79,70,229,.35);
+  position: relative; z-index: 1;
+}
+.download-text {
+  display: flex; flex-direction: column; gap: 2px;
+  position: relative; z-index: 1;
+}
+.download-label {
+  font-size: 14px; font-weight: 700;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.download-sub {
+  font-size: 11px; color: var(--gray-500); font-weight: 500;
+}
+.download-badge {
+  position: absolute; top: 8px; right: 10px;
+  font-size: 10px; font-weight: 700; letter-spacing: .4px;
+  text-transform: uppercase;
+  background: rgba(16,185,129,.15); color: var(--emerald);
+  border: 1px solid rgba(16,185,129,.25);
+  padding: 2px 7px; border-radius: var(--radius-full);
+}
+.hero-install-success {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 13px; color: var(--emerald); font-weight: 600;
+  background: rgba(16,185,129,.08); border: 1px solid rgba(16,185,129,.2);
+  padding: 10px 16px; border-radius: var(--radius-md);
+}
+
 /* ─── Install Button (Nav) ───────────────────────────────────── */
 .btn-install {
   background: rgba(6,182,212,.12);
