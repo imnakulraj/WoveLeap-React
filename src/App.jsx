@@ -9,7 +9,6 @@ import Pricing from './components/Pricing'
 import Testimonials from './components/Testimonials'
 import CTA from './components/CTA'
 import Footer from './components/Footer'
-import InstallBanner from './components/InstallBanner'
 
 export default function App() {
   return (
@@ -25,7 +24,6 @@ export default function App() {
       <Testimonials />
       <CTA />
       <Footer />
-      <InstallBanner />
     </>
   )
 }

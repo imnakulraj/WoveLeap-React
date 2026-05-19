@@ -1,13 +1,9 @@
 import { useState, useEffect } from 'react'
 import LogoMark from './LogoMark'
-import useInstallPrompt from '../hooks/useInstallPrompt'
-
-const APP_URL = 'https://app.woveleap.com/'
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-  const { canInstall, install } = useInstallPrompt()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -34,15 +30,8 @@ export default function Nav() {
           </ul>
 
           <div className="nav-actions">
-            {canInstall && (
-              <button className="btn btn-install" onClick={install} title="Install WoveLeap on your device">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <path d="M7 1v8M4 6l3 3 3-3M1 12h12" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-                Install
-              </button>
-            )}
-            <a href={APP_URL} className="btn btn-primary">Sign In to WoveLeap</a>
+            <a href="#" className="nav-login">Log in</a>
+            <a href="#cta" className="btn btn-primary">Start Free Trial</a>
           </div>
 
           <button className="hamburger" onClick={() => setMenuOpen(o => !o)} aria-label="Menu">
@@ -56,16 +45,9 @@ export default function Nav() {
         <a href="#how-it-works" onClick={closeMenu}>How It Works</a>
         <a href="#integrations" onClick={closeMenu}>Integrations</a>
         <a href="#pricing" onClick={closeMenu}>Pricing</a>
-        {canInstall && (
-          <button className="btn btn-install btn-lg" style={{ marginTop: 8 }} onClick={() => { install(); closeMenu() }}>
-            <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-              <path d="M7.5 1v9M4 7l3.5 3.5L11 7M2 13h11" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-            Install App
-          </button>
-        )}
-        <a href={APP_URL} className="btn btn-primary btn-lg" style={{ marginTop: 12 }} onClick={closeMenu}>
-          Sign In to WoveLeap
+        <a href="#" style={{ color: 'var(--gray-500)' }} onClick={closeMenu}>Log in</a>
+        <a href="#cta" className="btn btn-primary btn-lg" style={{ marginTop: 12 }} onClick={closeMenu}>
+          Start Free Trial
         </a>
       </div>
     </>

@@ -1,15 +1,10 @@
-import { useEffect, useRef, useState } from 'react'
-import useInstallPrompt from '../hooks/useInstallPrompt'
-import InstallModal from './InstallModal'
+import { useEffect, useRef } from 'react'
 
 const BARS = [35, 55, 42, 70, 60, 88, 75, 95, 80, 90]
 const ACTIVE = [5, 7]
-const APP_URL = 'https://app.woveleap.com/'
 
 export default function Hero() {
   const contentRef = useRef(null)
-  const { canInstall, install, installed, browser, isIOS, installContext } = useInstallPrompt()
-  const [showModal, setShowModal] = useState(false)
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -48,8 +43,8 @@ export default function Hero() {
             </p>
 
             <div className="hero-actions reveal" style={{ transitionDelay: '.3s' }}>
-              <a href={APP_URL} className="btn btn-primary btn-xl">
-                Sign In to WoveLeap
+              <a href="#cta" className="btn btn-primary btn-xl">
+                Start for Free
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
@@ -57,44 +52,7 @@ export default function Hero() {
               <a href="#how-it-works" className="btn btn-secondary btn-xl">See how it works</a>
             </div>
 
-            {/* PWA Install Button — always visible */}
-            <div className="hero-install reveal" style={{ transitionDelay: '.42s' }}>
-              {installed ? (
-                <div className="hero-install-success">
-                  <span>✅</span> App installed — find it on your desktop!
-                </div>
-              ) : (
-                <button
-                  className={`btn-download-app ${canInstall ? 'ready' : 'unavailable'}`}
-                  onClick={() => canInstall ? install() : setShowModal(true)}
-                  title={installContext.title}
-                >
-                  <span className="download-icon">
-                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                      <rect x="1" y="12" width="16" height="5" rx="2" stroke="currentColor" strokeWidth="1.6"/>
-                      <path d="M9 1v8M5.5 6l3.5 3.5L12.5 6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </span>
-                  <div className="download-text">
-                    <span className="download-label">{installContext.label}</span>
-                    <span className="download-sub">{installContext.sublabel}</span>
-                  </div>
-                  {installContext.badge && (
-                    <span className="download-badge">{installContext.badge}</span>
-                  )}
-                </button>
-              )}
-            </div>
-
-            {showModal && (
-              <InstallModal
-                browser={browser}
-                isIOS={isIOS}
-                onClose={() => setShowModal(false)}
-              />
-            )}
-
-            <div className="hero-social-proof reveal" style={{ transitionDelay: '.52s' }}>
+            <div className="hero-social-proof reveal" style={{ transitionDelay: '.4s' }}>
               <div className="hero-avatars">
                 <div className="hero-avatar-placeholder av1">AK</div>
                 <div className="hero-avatar-placeholder av2">SR</div>
@@ -146,11 +104,7 @@ export default function Hero() {
 
                 <div className="mini-chart">
                   {BARS.map((h, i) => (
-                    <div
-                      key={i}
-                      className={`bar ${ACTIVE.includes(i) ? 'active' : ''}`}
-                      style={{ height: `${h}%` }}
-                    />
+                    <div key={i} className={`bar ${ACTIVE.includes(i) ? 'active' : ''}`} style={{ height: `${h}%` }} />
                   ))}
                 </div>
 
