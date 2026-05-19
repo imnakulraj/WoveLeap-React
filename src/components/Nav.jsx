@@ -32,7 +32,7 @@ export default function Nav() {
           </ul>
 
           <div className="nav-actions">
-            <a href={APP_URL} className="btn btn-primary">Sign In to WoveLeap</a>
+            <a href={APP_URL} className="btn btn-primary">Login In to WoveLeap</a>
           </div>
 
           <button className="hamburger" onClick={() => setMenuOpen(o => !o)} aria-label="Menu">
@@ -47,7 +47,7 @@ export default function Nav() {
         <a href="#integrations" onClick={closeMenu}>Integrations</a>
         <a href="#pricing" onClick={closeMenu}>Pricing</a>
         <a href={APP_URL} className="btn btn-primary btn-lg" style={{ marginTop: 12 }} onClick={closeMenu}>
-          Sign In to WoveLeap
+          Login In to WoveLeap
         </a>
       </div>
     </>
