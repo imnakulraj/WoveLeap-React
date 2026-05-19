@@ -579,66 +579,60 @@ footer {
 
 .btn-download-app {
   display: inline-flex; align-items: center; gap: 14px;
-  padding: 13px 20px; border-radius: var(--radius-lg);
-  background: rgba(255,255,255,.04);
-  border: 1px solid rgba(255,255,255,.1);
+  padding: 14px 22px 14px 14px;
+  border-radius: var(--radius-lg);
   cursor: pointer; transition: var(--transition);
   text-align: left; color: var(--white);
-  backdrop-filter: blur(8px);
   position: relative; overflow: hidden;
 }
-.btn-download-app::before {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(135deg, rgba(99,102,241,.08), rgba(6,182,212,.05));
-  opacity: 0; transition: var(--transition);
-}
 .btn-download-app.ready {
-  border-color: rgba(99,102,241,.3);
-  background: rgba(99,102,241,.08);
+  background: linear-gradient(135deg, rgba(79,70,229,.35), rgba(6,182,212,.2));
+  border: 1.5px solid rgba(99,102,241,.6);
+  box-shadow: 0 0 0 1px rgba(99,102,241,.15), 0 8px 28px rgba(79,70,229,.25);
 }
 .btn-download-app.ready:hover {
-  border-color: rgba(99,102,241,.5);
-  background: rgba(99,102,241,.14);
+  background: linear-gradient(135deg, rgba(79,70,229,.5), rgba(6,182,212,.3));
+  border-color: rgba(99,102,241,.85);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(79,70,229,.2);
+  box-shadow: 0 0 0 1px rgba(99,102,241,.25), 0 12px 36px rgba(79,70,229,.4);
 }
-.btn-download-app.ready:hover::before { opacity: 1; }
-
 .btn-download-app.unavailable {
-  opacity: .55; cursor: default;
+  background: rgba(255,255,255,.05);
+  border: 1.5px solid rgba(255,255,255,.12);
+  opacity: .6; cursor: default;
 }
 
 .download-icon {
-  width: 42px; height: 42px; border-radius: 10px; flex-shrink: 0;
+  width: 46px; height: 46px; border-radius: 12px; flex-shrink: 0;
   background: linear-gradient(135deg, var(--brand-600), var(--accent));
   display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 4px 12px rgba(79,70,229,.35);
+  box-shadow: 0 4px 14px rgba(79,70,229,.5);
   position: relative; z-index: 1;
 }
 .download-text {
-  display: flex; flex-direction: column; gap: 2px;
+  display: flex; flex-direction: column; gap: 3px;
   position: relative; z-index: 1;
 }
 .download-label {
-  font-size: 14px; font-weight: 700;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px; font-weight: 800; color: var(--white);
+  font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: -.2px;
 }
 .download-sub {
-  font-size: 11px; color: var(--gray-500); font-weight: 500;
+  font-size: 11.5px; color: var(--gray-400); font-weight: 500;
 }
 .download-badge {
-  position: absolute; top: 8px; right: 10px;
-  font-size: 10px; font-weight: 700; letter-spacing: .4px;
+  position: absolute; top: 9px; right: 11px;
+  font-size: 10px; font-weight: 700; letter-spacing: .5px;
   text-transform: uppercase;
-  background: rgba(16,185,129,.15); color: var(--emerald);
-  border: 1px solid rgba(16,185,129,.25);
-  padding: 2px 7px; border-radius: var(--radius-full);
+  background: rgba(16,185,129,.2); color: var(--emerald);
+  border: 1px solid rgba(16,185,129,.35);
+  padding: 3px 8px; border-radius: var(--radius-full);
 }
 .hero-install-success {
   display: inline-flex; align-items: center; gap: 8px;
   font-size: 13px; color: var(--emerald); font-weight: 600;
-  background: rgba(16,185,129,.08); border: 1px solid rgba(16,185,129,.2);
-  padding: 10px 16px; border-radius: var(--radius-md);
+  background: rgba(16,185,129,.1); border: 1px solid rgba(16,185,129,.25);
+  padding: 12px 18px; border-radius: var(--radius-md);
 }
 
 /* ─── Install Button (Nav) ───────────────────────────────────── */
