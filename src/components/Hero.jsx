@@ -1,12 +1,14 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import useInstallPrompt from '../hooks/useInstallPrompt'
+import InstallModal from './InstallModal'
 
 const BARS = [35, 55, 42, 70, 60, 88, 75, 95, 80, 90]
 const ACTIVE = [5, 7]
 
 export default function Hero() {
   const contentRef = useRef(null)
-  const { canInstall, install, installed } = useInstallPrompt()
+  const { canInstall, install, installed, browser, isIOS } = useInstallPrompt()
+  const [showModal, setShowModal] = useState(false)
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -54,7 +56,7 @@ export default function Hero() {
               <a href="#how-it-works" className="btn btn-secondary btn-xl">See how it works</a>
             </div>
 
-            {/* PWA Install Button */}
+            {/* PWA Install Button — always visible */}
             <div className="hero-install reveal" style={{ transitionDelay: '.42s' }}>
               {installed ? (
                 <div className="hero-install-success">
@@ -62,9 +64,8 @@ export default function Hero() {
                 </div>
               ) : (
                 <button
-                  className={`btn-download-app ${canInstall ? 'ready' : 'unavailable'}`}
-                  onClick={canInstall ? install : undefined}
-                  title={canInstall ? 'Install WoveLeap on your device' : 'Open in Chrome or Edge to install'}
+                  className="btn-download-app ready"
+                  onClick={() => canInstall ? install() : setShowModal(true)}
                 >
                   <span className="download-icon">
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -73,19 +74,21 @@ export default function Hero() {
                     </svg>
                   </span>
                   <div className="download-text">
-                    <span className="download-label">
-                      {canInstall ? 'Install App' : 'Available on Desktop'}
-                    </span>
-                    <span className="download-sub">
-                      {canInstall ? 'Works offline · No app store needed' : 'Chrome & Edge supported'}
-                    </span>
+                    <span className="download-label">Install App</span>
+                    <span className="download-sub">Works offline · No app store needed</span>
                   </div>
-                  {canInstall && (
-                    <span className="download-badge">Free</span>
-                  )}
+                  <span className="download-badge">Free</span>
                 </button>
               )}
             </div>
+
+            {showModal && (
+              <InstallModal
+                browser={browser}
+                isIOS={isIOS}
+                onClose={() => setShowModal(false)}
+              />
+            )}
 
             <div className="hero-social-proof reveal" style={{ transitionDelay: '.52s' }}>
               <div className="hero-avatars">
