@@ -4,6 +4,7 @@ import InstallModal from './InstallModal'
 
 const BARS = [35, 55, 42, 70, 60, 88, 75, 95, 80, 90]
 const ACTIVE = [5, 7]
+const APP_URL = 'https://app.woveleap.com/'
 
 export default function Hero() {
   const contentRef = useRef(null)
@@ -47,8 +48,8 @@ export default function Hero() {
             </p>
 
             <div className="hero-actions reveal" style={{ transitionDelay: '.3s' }}>
-              <a href="#cta" className="btn btn-primary btn-xl">
-                Start for Free
+              <a href={APP_URL} className="btn btn-primary btn-xl">
+                Sign In to WoveLeap
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>

@@ -1,5 +1,7 @@
 import Reveal from './Reveal'
 
+const APP_URL = 'https://app.woveleap.com/'
+
 const CHIPS = [
   { icon: '📊', label: 'Zoho CRM' },
   { icon: '☁️', label: 'Salesforce' },
@@ -27,7 +29,7 @@ export default function Integrations() {
               WoveLeap plugs into your CRM, accounting software, and payment tools via secure
               webhooks and APIs — no rip-and-replace required.
             </p>
-            <a href="#cta" className="btn btn-primary">Explore all integrations</a>
+            <a href={APP_URL} className="btn btn-primary">Sign In to WoveLeap</a>
           </Reveal>
 
           <Reveal delay={1} className="int-grid">

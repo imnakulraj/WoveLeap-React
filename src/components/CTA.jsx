@@ -1,5 +1,7 @@
 import Reveal from './Reveal'
 
+const APP_URL = 'https://app.woveleap.com/'
+
 export default function CTA() {
   return (
     <section className="cta-section" id="cta">
@@ -15,10 +17,9 @@ export default function CTA() {
             Join 500+ teams who trust WoveLeap to pay their partners accurately, on time, every time.
           </p>
           <div className="cta-actions">
-            <a href="#" className="btn btn-primary btn-xl">Start 14-Day Free Trial</a>
-            <a href="#" className="btn btn-secondary btn-xl">Book a Demo</a>
+            <a href={APP_URL} className="btn btn-primary btn-xl">Sign In to WoveLeap</a>
           </div>
-          <div className="cta-note">Free trial · No credit card · Cancel anytime</div>
+          <div className="cta-note">Direct access to your live WoveLeap workspace</div>
         </Reveal>
       </div>
     </section>

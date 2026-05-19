@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import Reveal from './Reveal'
 
+const APP_URL = 'https://app.woveleap.com/'
+
 const PLANS = [
   {
     name: 'Starter',
@@ -118,7 +120,7 @@ export default function Pricing() {
                 ))}
               </ul>
 
-              <a href="#cta" className={`btn ${ctaClass} btn-full`}>{cta}</a>
+              <a href={APP_URL} className={`btn ${ctaClass} btn-full`}>{cta}</a>
             </Reveal>
           ))}
         </div>
