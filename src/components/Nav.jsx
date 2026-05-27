@@ -21,7 +21,10 @@ export default function Nav() {
         <div className="nav-inner">
           <a href="#" className="nav-logo">
             <LogoMark size={38} />
-            <span className="nav-logo-text">WoveLeap</span>
+            <span className="nav-logo-group">
+              <span className="nav-logo-text">WoveLeap</span>
+              <span className="nav-logo-tagline">Commission · Incentives · Bonuses</span>
+            </span>
           </a>
 
           <ul className="nav-links">
