@@ -6,9 +6,9 @@ const APP_URL = 'https://app.woveleap.com/'
 const PLANS = [
   {
     name: 'Starter',
-    monthly: '4,999',
-    annual: '3,999',
-    desc: 'Perfect for small teams getting started with commission automation.',
+    monthly: '15',
+    annual: '150',
+    desc: 'Perfect for small teams.',
     features: [
       { text: 'Up to 25 partners' },
       { text: 'Basic commission rules' },
@@ -24,9 +24,9 @@ const PLANS = [
   },
   {
     name: 'Growth',
-    monthly: '12,999',
-    annual: '10,399',
-    desc: 'For growing companies with complex structures and partner networks.',
+    monthly: '30',
+    annual: '300',
+    desc: 'Best for growing businesses.',
     popular: true,
     features: [
       { text: 'Up to 200 partners' },
@@ -42,10 +42,28 @@ const PLANS = [
     ctaClass: 'btn-primary',
   },
   {
+    name: 'Professional',
+    monthly: '50',
+    annual: '500',
+    desc: 'For large operations.',
+    features: [
+      { text: 'Unlimited partners' },
+      { text: 'Custom commission logic' },
+      { text: 'White-label partner portal' },
+      { text: 'Multi-currency + live FX' },
+      { text: 'CRM webhook integrations' },
+      { text: 'Dispute resolution module' },
+      { text: 'Dedicated account manager' },
+      { text: 'Priority support' },
+    ],
+    cta: 'Get started',
+    ctaClass: 'btn-secondary',
+  },
+  {
     name: 'Enterprise',
     monthly: null,
     annual: null,
-    desc: 'For large organisations with advanced compliance and customisation needs.',
+    desc: 'Custom for enterprises.',
     features: [
       { text: 'Unlimited partners' },
       { text: 'Custom commission logic' },
@@ -102,9 +120,9 @@ export default function Pricing() {
               <div className="plan-price">
                 {monthly ? (
                   <>
-                    <span className="currency">₹</span>
+                    <span className="currency">$</span>
                     <span className="amount">{billing === 'monthly' ? monthly : annual}</span>
-                    <span className="period">/mo</span>
+                    <span className="period">/mo USD</span>
                   </>
                 ) : (
                   <span className="amount" style={{ fontSize: 36, letterSpacing: -1 }}>Custom</span>
